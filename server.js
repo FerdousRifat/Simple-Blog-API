@@ -13,15 +13,13 @@ let blogs = [
   },
 ];
 
-// ৪. Custom Logger Middleware
+let nextId = 2;
+
 app.use((req, res, next) => {
   console.log(`Request received: ${req.method} ${req.originalUrl}`);
   next();
 });
 
-// ২. API Routes
-
-// Create Blog: POST /api/blogs
 app.post("/api/blogs", (req, res) => {
   const { title, description, author } = req.body;
 
@@ -34,7 +32,7 @@ app.post("/api/blogs", (req, res) => {
   }
 
   const newBlog = {
-    id: (blogs.length + 1).toString(),
+    id: (nextId++).toString(),
     title,
     description,
     author,
